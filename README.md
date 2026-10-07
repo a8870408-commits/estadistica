@@ -1,9 +1,9 @@
-# Aula oberta · Estadística
-Aplicació educativa en català per a 1r d’ESO, sense comptes ni dependències de paquets.
+# Dades.cat · Estadística
+Aplicació educativa en català per a 1r d’ESO, sense comptes ni dependències de paquets. Disseny juvenil amb colors violeta i verd llima, navegació adaptable i exemples contextualitzats a Catalunya: Sant Jordi a Vic, instituts de Girona i Lleida, castells a Tarragona i festes majors. Totes les dades dels exemples són fictícies per practicar.
 
 ## Contingut
 - Vuit blocs: variables, freqüències, mesures de centralització, mostres, gràfics, rang, lectura crítica i investigació responsable.
-- Laboratori numèric i de categories amb quatre conjunts d’exemple, freqüències absolutes/relatives/acumulades, percentatges, gràfics de barres/sectors, càlculs explicats i exportació CSV.
+- Laboratori numèric i de categories amb sis conjunts d’exemple, freqüències absolutes/relatives/acumulades, percentatges, gràfics de barres/sectors, càlculs explicats i exportació CSV.
 - Quatre activitats autocorrectives, amb deu respostes en total.
 - Banc de quinze preguntes: escalfament aleatori de cinc o repte complet, retorn explicatiu i pràctica dels errors.
 - Projecte guiat amb sis apartats, desament i impressió/PDF des del navegador.
