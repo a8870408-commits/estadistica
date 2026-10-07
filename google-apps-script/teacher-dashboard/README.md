@@ -14,3 +14,8 @@ El dashboard és de consulta: no modifica els lliuraments ni envia correus. Els 
 
 ## Imprimir o desar en PDF
 Prem **Imprimeix / PDF**. La impressió inclou els indicadors globals, el gràfic i la llista segons els filtres actuals. Si has obert el detall d’un treball, també s’hi inclou. Per desar un document, tria **Desa com a PDF** al diàleg del navegador. Per instal·lar aquesta actualització, substitueix el contingut de `Dashboard.html` al projecte vinculat al full, desa i tanca/reobre el dashboard. No cal actualitzar el projecte web de lliuraments.
+
+## Correcció i feedback (actualització)
+Substitueix **Code.gs i Dashboard.html** al projecte vinculat al full i desa. Reobre el dashboard. Cada treball mostra percentatge d’encerts i errors només sobre les preguntes tancades rebudes i reconegudes pel solucionari. Els camps «correcta» del navegador s’ignoren. Les respostes obertes tenen valoració i comentari per apartat, i un feedback global. Prem **Desa la revisió i el feedback**: s’afegeixen tres columnes al full (revisió, feedback i data). Les dades originals no es modifiquen.
+
+Perquè l’alumne consulti el retorn, actualitza també **Code.gs del projecte web que rep lliuraments**, amb el fitxer del directori pare. A Implementa → Gestiona les implementacions → llapis, selecciona **Versió nova** i implementa mantenint la mateixa URL. No publiquis el projecte privat del dashboard. A l’app, «Envia les respostes» inclou «Consulta el feedback». L’identificador del darrer lliurament s’autocompleta en el mateix navegador; si canvia de dispositiu, l’alumne ha de copiar l’identificador de la confirmació. El retorn només és accessible amb aquest identificador aleatori, que s’ha de mantenir privat. No verifica identitat ni substitueix autenticació del domini.

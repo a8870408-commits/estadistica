@@ -13,9 +13,9 @@ function setup() {
   console.log('Full del professorat: https://docs.google.com/spreadsheets/d/' + props.getProperty('SHEET_ID'));
 }
 function escapeHTML(value) { return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function receipt(title,message) { return HtmlService.createHtmlOutput('<!doctype html><html lang="ca"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dades.cat · Lliurament</title><body style="font:18px system-ui;background:#f4effc;color:#362450;padding:40px;max-width:700px;margin:auto"><h1>'+escapeHTML(title)+'</h1><p style="line-height:1.7">'+escapeHTML(message)+'</p><p>Pots tancar aquesta pestanya i tornar a l’aplicació.</p></body></html>'); }
+function receipt(title,message) { return HtmlService.createHtmlOutput('<!doctype html><html lang="ca"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dades.cat · Lliurament</title><body style="font:18px system-ui;background:#f4effc;color:#362450;padding:40px;max-width:700px;margin:auto"><h1>'+escapeHTML(title)+'</h1><p style="line-height:1.7;white-space:pre-wrap">'+escapeHTML(message)+'</p><p>Pots tancar aquesta pestanya i tornar a l’aplicació.</p></body></html>'); }
 function literal(value) { const s=String(value); return /^[=+@\-\t\r]/.test(s)?"'"+s:s; }
-function doGet() { return receipt('Servei de lliuraments','Per enviar el treball, utilitza el botó «Lliura les respostes» de Dades.cat.'); }
+function doGet(e) { if(e&&e.parameter&&e.parameter.feedback)return studentFeedback(e.parameter.feedback);return receipt('Servei de lliuraments','Per enviar el treball, utilitza el botó «Lliura les respostes» de Dades.cat.'); }
 function doPost(e) {
   const lock = LockService.getScriptLock(); let locked=false;
   try {
@@ -44,4 +44,16 @@ function doPost(e) {
     return receipt('Treball rebut i desat', 'Identificador: '+data.id+'. El lliurament queda registrat amb la data del servidor. '+(emailed?'S’ha tramès la notificació al professorat.':'La notificació per correu no ha funcionat, però el professorat pot consultar el treball al full.'));
   } catch(err) {return receipt('No s’ha confirmat el lliurament',err.message+' Revisa les dades i torna-ho a provar.');}
   finally {if(locked)lock.releaseLock();}
+}
+
+function studentFeedback(id){
+  if(!/^[a-f0-9-]{36}$/i.test(id))return receipt('Identificador invàlid','Revisa l’identificador del teu lliurament.');
+  const sheetId=PropertiesService.getScriptProperties().getProperty('SHEET_ID');if(!sheetId)return receipt('Servei no configurat','El professorat ha de configurar el servei.');
+  const rows=SpreadsheetApp.openById(sheetId).getSheetByName('Lliuraments').getDataRange().getValues();
+  const row=rows.find((r,i)=>i>0&&String(r[0])===id);if(!row)return receipt('Lliurament no trobat','Comprova que la recepció del treball estigui confirmada.');
+  if(!row[8])return receipt('Pendent de revisió','El treball està rebut. El professorat encara no ha publicat la revisió.');
+  let review={};try{review=JSON.parse(row[6]||'{}');}catch(e){}
+  const labels={pending:'Pendent de revisió',achieved:'Assolit',developing:'En procés',revise:'Cal revisar'};
+  const text=Object.keys(review).map(key=>(key==='summary'?'Resum':key==='conclusion'?'Conclusió':'Apartat del projecte '+(Number(key.split('-')[1])+1))+': '+(labels[review[key].level]||'Pendent')+'\n'+review[key].comment).join('\n\n');
+  return receipt('El retorn del teu treball', 'Feedback del professorat:\n'+String(row[7]||'Sense comentari global.')+'\n\n'+text);
 }
