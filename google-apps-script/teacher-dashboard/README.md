@@ -11,3 +11,6 @@ Aquest dashboard s’obre dins del full Google Sheets i no es publica a GitHub P
 Targetes amb nombre de lliuraments, noms diferents, treballs d’avui i notificacions pendents/fallides; gràfic dels darrers 7 dies; cerca per nom/resum i filtres per data/notificació; detall del treball. Les dates es mostren amb el fus horari de Catalunya. Prem Actualitza per consultar els nous lliuraments.
 
 El dashboard és de consulta: no modifica els lliuraments ni envia correus. Els noms no verifiquen la identitat i no hi ha una llista de matrícula per calcular qui falta per lliurar. No mostra notes automàtiques perquè el servidor no verifica els resultats del navegador.
+
+## Imprimir o desar en PDF
+Prem **Imprimeix / PDF**. La impressió inclou els indicadors globals, el gràfic i la llista segons els filtres actuals. Si has obert el detall d’un treball, també s’hi inclou. Per desar un document, tria **Desa com a PDF** al diàleg del navegador. Per instal·lar aquesta actualització, substitueix el contingut de `Dashboard.html` al projecte vinculat al full, desa i tanca/reobre el dashboard. No cal actualitzar el projecte web de lliuraments.
