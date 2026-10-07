@@ -1,4 +1,4 @@
-import {submissionEndpoint} from './submission-config.js';
+import {submissionEndpoint, isSubmissionEndpoint} from './submission-config.js';
 const key='aula-submission';
 export function readSubmission(){try{return JSON.parse(localStorage.getItem(key)||'{}')||{};}catch{return {};}}
 export function saveResponse(section,data){const report=readSubmission();report[section]=data;try{localStorage.setItem(key,JSON.stringify(report));}catch{} }
@@ -12,7 +12,7 @@ const refresh=()=>{report.name=name.value.trim();report['Resum']=summary.value.t
 let pendingId=null;let pendingPayload=null;
 content.querySelector('#send-form').onsubmit=e=>{e.preventDefault();refresh();if(!report.name||report['Resum'].length<20){status.textContent='Indica el nom i escriu un resum de com a mínim 20 caràcters.';return;}
 const responses=Object.entries(report).filter(([k])=>!['name','Resum'].includes(k)).map(([section,answers])=>({section,answers}));if(!responses.length){status.textContent='Completa i comprova alguna activitat abans de lliurar el treball.';return;}
-if(!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(submissionEndpoint)){status.textContent='El servei de lliuraments encara no està configurat correctament.';return;}
+if(!isSubmissionEndpoint(submissionEndpoint)){status.textContent='El servei de lliuraments encara no està configurat correctament.';return;}
 saveResponse('name',report.name);saveResponse('Resum',report['Resum']);const snapshot=JSON.stringify({name:report.name,summary:report['Resum'],responses});if(snapshot!==pendingPayload){pendingId=crypto.randomUUID();pendingPayload=snapshot;}const payload=JSON.stringify({id:pendingId,...JSON.parse(snapshot)});if(payload.length>45000){status.textContent='El treball és massa llarg per lliurar-lo. Redueix les dades del laboratori i torna-ho a provar.';return;}
 const form=document.createElement('form');form.method='POST';form.action=submissionEndpoint;form.target='_blank';form.rel='noopener';const field=document.createElement('input');field.type='hidden';field.name='payload';field.value=payload;form.append(field);document.body.append(form);form.submit();form.remove();status.textContent='S’ha obert el servei de lliuraments. Comprova que la nova pestanya mostri «Treball rebut i desat». Si no s’obre, permet les finestres emergents i torna-ho a provar.';
 };}
