@@ -22,3 +22,6 @@ La tipografia externa és opcional i té alternatives locals. No hi ha analític
 
 ## Il·lustracions
 La portada i les quatre escenes d’activitats utilitzen il·lustracions generades per a aquest projecte, desades a `assets/`. Representen situacions de Catalunya; no són fotografies documentals. La portada té text alternatiu i les escenes d’activitats tenen descripcions accessibles. Les imatges es carreguen des del mateix allotjament, sense serveis externs.
+
+## Compartir les respostes
+A «Envia les respostes», l’alumne introdueix el nom i revisa les darreres respostes comprovades de cada activitat, el laboratori, el qüestionari i el projecte desat. El botó prepara un correu a a8870408@xtec.cat mitjançant `mailto:`; cal una aplicació de correu configurada i confirmar-hi l’enviament. No hi ha enviament automàtic ni confirmació de recepció. Per a treballs llargs es pot descarregar un TXT i adjuntar-lo. El nom i el treball es poden esborrar des d’«El meu progrés».
