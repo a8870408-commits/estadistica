@@ -19,3 +19,6 @@ Compatible amb GitHub Pages i altres allotjaments estàtics. A Settings → Page
 Sis proves automatitzades cobreixen càlculs, decimals, dades incorrectes, categories i CSV. S’ha comprovat amb Chromium la navegació, el laboratori, la representació segura de categories, les quatre activitats, el desament del projecte, les quinze preguntes, la revisió d’errors, el progrés i l’absència de desbordament horitzontal al mòbil.
 
 La tipografia externa és opcional i té alternatives locals. No hi ha analítica ni enviament de dades d’alumnes. El contingut és una proposta didàctica per a 1r d’ESO i no una certificació de cobertura completa del currículum.
+
+## Il·lustracions
+La portada i les quatre escenes d’activitats utilitzen il·lustracions generades per a aquest projecte, desades a `assets/`. Representen situacions de Catalunya; no són fotografies documentals. La portada té text alternatiu i les escenes d’activitats tenen descripcions accessibles. Les imatges es carreguen des del mateix allotjament, sense serveis externs.
