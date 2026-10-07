@@ -1,4 +1,4 @@
-import {saveResponse} from './submissions.js';
+import {saveResponse} from './submissions.js?v=lliuraments-2';
 import { summarize, parseData, frequencies, toCSV } from './stats.js';
 const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt = n => new Intl.NumberFormat('ca-ES',{maximumFractionDigits:2}).format(n);
